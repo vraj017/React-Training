@@ -24,6 +24,8 @@ class SignupForm extends React.Component{
   }
 
   btnSignup(e){
+    if(this.state.name === '' || this.state.email === '' || this.state.mobile === '' || this.state.password === '') 
+    { alert('Please enter all the fields'); } else{
     e.preventDefault();
     var myobj = {
       name:this.state.name,
@@ -33,6 +35,7 @@ class SignupForm extends React.Component{
     }
     localStorage.setItem(`userdata`,JSON.stringify(myobj));
     this.setState({m:`Data Saved `})
+    }
   }
   render(){
     return(<><center>

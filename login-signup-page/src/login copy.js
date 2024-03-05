@@ -1,41 +1,75 @@
 
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 class Login extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-    handleLogin () {
-        // Retrieve email and password from local storage
-        const storedEmail = localStorage.getItem('email');
-        const storedPassword = localStorage.getItem('password');
+  constructor(props) {
+    super(props);
 
-        // Get the values entered in the textboxes
-        const enteredEmail = document.getElementById('email').value;
-        const enteredPassword = document.getElementById('password').value;
-
-        // Compare the entered values with the stored values
-        if (enteredEmail === "" && enteredPassword === "") {
-            this.setState({msg:`Please enter email and password`});
-        } else if (enteredEmail === storedEmail && enteredPassword === storedPassword) {
-            // Login successful
-            this.setState({msg:`Login successful`});
-        } else {
-            // Login failed
-            this.setState({msg:`Login Failed`});
-        }
+    this.state = {
+      email: '',
+      password: '',
+      error: '',
     };
 
-    render() {
-        return (
-            <div>
-                <input type="text" id="email" placeholder="Email"onChange={(e)=>this.setState({email:e.target.value})} />
-                <input type="password" id="password" placeholder="Password"onChange={(e)=>this.setState({password:e.target.value})} />
-                <button onClick={this.handleLogin.bind(this)}>Login</button>
-                {this.state.msg}
-            </div>
-        );
+    // Bind methods to the instance
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
+  }
+
+  handleInputChange(event) {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  }
+
+  handleLogin(event) {
+    event.preventDefault();
+
+    const { email, password } = this.state;
+
+    // Retrieve user data from local storage
+    const storedUser = JSON.parse(localStorage.getItem('userdata'));
+
+    // Check if the entered credentials match the stored data
+    if (storedUser && email === storedUser.email && password === storedUser.password) {
+      // Successful login
+      this.setState({ error: '' });
+      alert('Login successful!');
+      // You can redirect to another page or set an authentication state here
+    } else {
+      // Failed login
+      this.setState({ error: 'Invalid username or password' });
     }
+  }
+
+  render() {
+    return (
+      <div>
+        <h2>Login</h2>
+        <form onSubmit={this.handleLogin}>
+          <div>
+            <label>Email:</label>
+            <input
+              type="text"
+              name="email"
+              value={this.state.email}
+              onChange={this.handleInputChange}
+            />
+          </div>
+          <div>
+            <label>Password:</label>
+            <input
+              type="password"
+              name="password"
+              value={this.state.password}
+              onChange={this.handleInputChange}
+            />
+          </div>
+          <button type="submit">Login</button>
+        </form>
+        {this.state.error && <p style={{ color: 'red' }}>{this.state.error}</p>}
+      </div>
+    );
+  }
 }
 
 export default Login;
