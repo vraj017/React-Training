@@ -1,59 +1,32 @@
-<!doctype html>
+import React from 'react';
+import { Redirect } from 'react-router-dom';
 
-<html lang="en"> 
+class Login extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoggedIn: false,
+        };
+    }
 
- <head> 
+    handleLogin = () => {
+        // Handle your login logic here
+        // If login is successful, set isLoggedIn state to true
+        this.setState({ isLoggedIn: true });
+    }
 
-  <meta charset="UTF-8"> 
+    render() {
+        if (this.state.isLoggedIn) {
+            // Redirect to a specific route if user is logged in
+            return <Redirect to="/dashboard" />
+        }
 
-  <title>CodePen - Animated Login Form using Html &amp; CSS Only</title> 
+        return (
+            <div>
+                <button onClick={this.handleLogin}>Login</button>
+            </div>
+        );
+    }
+}
 
-  <link rel="stylesheet" href="./style.css"> 
-
- </head> 
-
- <body> <!-- partial:index.partial.html --> 
-
-  <section> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
-
-   <div class="signin"> 
-
-    <div class="content"> 
-
-     <h2>Sign In</h2> 
-
-     <div class="form"> 
-
-      <div class="inputBox"> 
-
-       <input type="text" required> <i>Username</i> 
-
-      </div> 
-
-      <div class="inputBox"> 
-
-       <input type="password" required> <i>Password</i> 
-
-      </div> 
-
-      <div class="links"> <a href="#">Forgot Password</a> <a href="#">Signup</a> 
-
-      </div> 
-
-      <div class="inputBox"> 
-
-       <input type="submit" value="Login"> 
-
-      </div> 
-
-     </div> 
-
-    </div> 
-
-   </div> 
-
-  </section> <!-- partial --> 
-
- </body>
-
-</html>
+export default Login;

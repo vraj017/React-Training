@@ -5,7 +5,8 @@ import ResetPassword from './resetpassword.js';
 import Login from './login.js';
 import ChangePassword from './changepassword.js';
 import NewPassword from './newpassword.js';
-import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
+import { BrowserRouter as Router,Routes,Route  } from 'react-router-dom';
+import Logout from './logout.js';
 class App extends Component{
 
   render(){
@@ -19,6 +20,7 @@ class App extends Component{
         <Route path="/enternewpass" element={<NewPassword/>} />
         <Route path="/homepage/changepassword" element={<ChangePassword />} />
         <Route path="/homepage" element={<Homepage />} />
+        <Route path="/logout" element={<Logout />} />
       </Routes>
     </Router>
       {/* <SignupForm />

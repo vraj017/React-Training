@@ -1,7 +1,9 @@
 
 import React, { Component } from 'react';
 // import './style.css';
-import { Link } from 'react-router-dom';
+import { Link,Navigate} from 'react-router-dom';
+
+
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -9,6 +11,7 @@ class Login extends Component {
             email: '',
             password: '',
             error: '',
+            isLoggedIn: false,
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -25,20 +28,24 @@ class Login extends Component {
         const { email, password } = this.state;
 
         const storeduser = JSON.parse(localStorage.getItem('userdata'));
-       if(email === '' || password === ''){
-        alert('Please enter email and password');
-       }
-        else if(storeduser && email === storeduser.email && password === storeduser.password){
-            this.setState({error: ''});
-            alert('Login Successful');
-        }else{
-            this.setState({error: 'Invalid username or password'});
+        if (email === '' || password === '') {
+            alert('Please enter email and password');
+        } else if (storeduser && email === storeduser.email && password === storeduser.password) {
+            this.setState({ error: '' });
+            this.setState({ isLoggedIn: true });
+        } else {
+            this.setState({ error: 'Invalid username or password' });
         }
 
     }
 
     render() {
+        const { isLoggedIn } = this.state;
 
+        // Redirect to the home page if logged in
+        if (isLoggedIn) {
+          return <Navigate to="/homepage" />;
+        }
         return (
             <>  <center>
             <h2>Login</h2>
