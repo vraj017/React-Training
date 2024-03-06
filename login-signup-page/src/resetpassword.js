@@ -33,7 +33,10 @@ class ResetPassword extends Component {
 
     if (email === '') {
       alert('Please enter email');
-    } else if (email === storedEmail) {
+    }else if (email !== storedEmail) {
+      this.setState({ error: 'Email not match' });
+    } 
+    else if (email === storedEmail) {
       // Use Navigate to redirect to New Password page if email matches
       this.setState({ isEmailMatched: true });
     } else {
@@ -55,6 +58,7 @@ class ResetPassword extends Component {
         <form onSubmit={this.reset}>
           Email:<input type='text' name='email' value={this.state.email} onChange={this.handleInputChange} /><br />
           <button type="submit">Reset</button>
+          {this.state.error && <p style={{ color: "red" }}>{this.state.error}</p>}
         </form>
       </center>
     );

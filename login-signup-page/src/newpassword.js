@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 class NewPassword extends Component {
   constructor(props) {
@@ -22,8 +22,10 @@ class NewPassword extends Component {
     event.preventDefault();
   
     const { newPassword, confirmPassword } = this.state;
-  
-    if (newPassword !== confirmPassword) {
+  if(newPassword === '' || confirmPassword === ''){
+    alert('Please enter new password and confirm password');
+  }
+    else if (newPassword !== confirmPassword) {
       this.setState({ error: "New password and confirm password do not match" });
     } else {
       // Update the password in localStorage
@@ -66,6 +68,7 @@ class NewPassword extends Component {
             onChange={this.handleInputChange}
           /><br />
           <input type="submit" value="Change Password" />
+          <Link to = "/login">Login</Link>
         </form>
         {this.state.error && <p style={{ color: "red" }}>{this.state.error}</p>}
       </center>
