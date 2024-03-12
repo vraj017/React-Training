@@ -5,7 +5,7 @@ class Footer extends Component {
     return (
       <>
         <div id="footer">
-          <p>&copy;2024 React Training . All rights reserved. Design by SSPL-1384 Vraj Patel </p>
+          <p>&copy;2024 React Training . All rights reserved. Created by SSPL-1384 Vraj Patel </p>
         </div>
       </>
     );
