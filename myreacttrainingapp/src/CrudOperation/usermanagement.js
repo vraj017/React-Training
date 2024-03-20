@@ -1,6 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import React, { Component } from 'react';
+// import { ToastContainer } from "react-toastify";
+// import { toast } from "react-toastify";
 
 class UserManagement extends Component {
   constructor(props) {
@@ -20,6 +22,7 @@ class UserManagement extends Component {
   };
 
   addUser = () => {
+
     const { name, gender, users, editingIndex } = this.state;
     if (name === '' && gender === '') {
       alert('Please fill all the fields');

@@ -15,6 +15,8 @@ import TodoApp from './TODOApp/todo.js';
 import TodoAppwithLS from './TODOApp/todowithls.js';
 import UserManagement from './CrudOperation/usermanagement.js';
 import Footer from './footer.js';
+import FetchDemo from './APIDemo/FetchDemo.js';
+import AxiosDemo from './APIDemo/axiosdemo.js';
 
 
 class App extends Component {
@@ -23,7 +25,10 @@ class App extends Component {
       <Router>
         <Routes>
           <Route path='/' element={<Home2 />} />
-       
+          {/* //Axios Demo */}
+          <Route path='APIDemo/axiosdemo' element={<AxiosDemo />} />
+        {/* //Demo of Fetch API */}
+          <Route path='APIDemo/fetchDemo' element={<FetchDemo />} />
           {/* //UserManagementCrud */}
           <Route path='/CrudOperation' element={<UserManagement />} />
         {/* //TodoApp */}
