@@ -73,6 +73,12 @@ class Home2 extends React.Component {
             <li style={{ listStyleType: "none", marginBottom: "10px" }}>
               <Link to="/APIDemo/axiosdemo">Axios API Demo</Link>
             </li>
+            <li style={{ listStyleType: "none", marginBottom: "10px" }}>
+              <Link to="/APIDemo/AllNews">News Using API</Link>
+            </li>
+            <li style={{ listStyleType: "none", marginBottom: "10px" }}>
+              <Link to="APIDemo/SearchNews"> Search News Using API</Link>
+            </li>
           </ul>
         </center>
       </>

@@ -17,6 +17,8 @@ import UserManagement from './CrudOperation/usermanagement.js';
 import Footer from './footer.js';
 import FetchDemo from './APIDemo/FetchDemo.js';
 import AxiosDemo from './APIDemo/axiosdemo.js';
+import AllNews from './APIDemo/AllNews.js';
+import SearchNews from './APIDemo/SearchNews.js';
 
 
 class App extends Component {
@@ -25,6 +27,10 @@ class App extends Component {
       <Router>
         <Routes>
           <Route path='/' element={<Home2 />} />
+
+          {/* //News API */}
+          <Route path='APIDemo/AllNews' element={<AllNews />} />
+          <Route path='APIDemo/SearchNews' element={<SearchNews />} />
           {/* //Axios Demo */}
           <Route path='APIDemo/axiosdemo' element={<AxiosDemo />} />
         {/* //Demo of Fetch API */}

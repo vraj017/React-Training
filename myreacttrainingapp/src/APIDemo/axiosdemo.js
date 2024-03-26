@@ -1,3 +1,5 @@
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 import axios from 'axios';
 import React from 'react';
 
@@ -29,6 +31,7 @@ class AxiosDemo extends React.Component {
                             <th>ID</th>
                             <th>Image</th>
                             <th>Title</th>
+                            <th>Rating</th>
                             <th>Price</th>
                         </tr>
                     </thead>
@@ -38,6 +41,7 @@ class AxiosDemo extends React.Component {
                                 <td>{item.id}</td>
                                 <td><img src={item.image} alt={item.title} width="100px"/></td>
                                 <td>{item.title}</td>
+                                <td>{item.rating.rate}</td>
                                 <td>${item.price}</td>
                             </tr>
                         ))}

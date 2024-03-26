@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import React from "react";
-import Footer from "../footer";
+
 
 class FetchDemo extends React.Component {
     constructor(props) {
@@ -47,7 +47,7 @@ class FetchDemo extends React.Component {
                         ))}
                     </tbody>
                 </table>
-              <center><Footer /></center>  
+              
             </div>
         );
     }
