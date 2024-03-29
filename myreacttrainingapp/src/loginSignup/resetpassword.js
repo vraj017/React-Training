@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class ResetPassword extends Component {
   constructor(props) {
@@ -25,22 +27,19 @@ class ResetPassword extends Component {
     const storedUserData = JSON.parse(localStorage.getItem('userdata'));
 
     if (!storedUserData) {
-      alert('User data not found in localStorage');
+      toast.error('User data not found in localStorage');
       return;
     }
 
     const storedEmail = storedUserData.email;
 
     if (email === '') {
-      alert('Please enter email');
-    }else if (email !== storedEmail) {
+      toast.error('Please enter email');
+    } else if (email !== storedEmail) {
       this.setState({ error: 'Email not match' });
-    } 
-    else if (email === storedEmail) {
+    } else {
       // Use Navigate to redirect to New Password page if email matches
       this.setState({ isEmailMatched: true });
-    } else {
-      this.setState({ error: 'Email not match' });
     }
   }
 
@@ -53,14 +52,33 @@ class ResetPassword extends Component {
     }
 
     return (
-      <center>
-        <h2>Reset Password</h2>
-        <form onSubmit={this.reset}>
-          Email:<input type='text' name='email' value={this.state.email} onChange={this.handleInputChange} /><br />
-          <button type="submit">Reset</button>
-          {this.state.error && <p style={{ color: "red" }}>{this.state.error}</p>}
-        </form>
-      </center>
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-md-6">
+            <div className="card">
+              <div className="card-body">
+                <center>
+                  <h2>Reset Password</h2>
+                  <form onSubmit={this.reset}>
+                    <div className="form-group">
+                      <label>Email:</label>
+                      <input
+                        type='text'
+                        className="form-control"
+                        name='email'
+                        value={this.state.email}
+                        onChange={this.handleInputChange}
+                      />
+                    </div>
+                    <button type="submit" className="btn btn-primary">Reset</button>
+                  </form>
+                  {this.state.error && <p style={{ color: "red" }}>{this.state.error}</p>}
+                </center>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }
