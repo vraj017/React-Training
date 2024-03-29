@@ -1,14 +1,12 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min";
 import React, { Component } from 'react';
-// import { ToastContainer } from "react-toastify";
-// import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class UserManagement extends Component {
   constructor(props) {
     super(props);
 
-    // Load existing users from LocalStorage on component mount
     this.state = {
       users: JSON.parse(localStorage.getItem('users')) || [],
       name: '',
@@ -22,19 +20,17 @@ class UserManagement extends Component {
   };
 
   addUser = () => {
-
     const { name, gender, users, editingIndex } = this.state;
-    if (name === '' && gender === '') {
-      alert('Please fill all the fields');
+    if (name === '' || gender === '') {
+      toast.error('Please fill all the fields');
     } else if (editingIndex !== null) {
-      // Editing existing user
       users[editingIndex] = { name, gender };
+      toast.success('User updated successfully');
     } else {
-      // Adding new user
       users.push({ name, gender });
+      toast.success('User added successfully');
     }
 
-    // Update LocalStorage and reset form
     localStorage.setItem('users', JSON.stringify(users));
     this.setState({ users, name: '', gender: 'male', editingIndex: null });
   };
@@ -42,8 +38,6 @@ class UserManagement extends Component {
   editUser = (index) => {
     const { users } = this.state;
     const { name, gender } = users[index];
-
-    // Set form fields for editing
     this.setState({ name, gender, editingIndex: index });
   };
 
@@ -52,10 +46,9 @@ class UserManagement extends Component {
     if (confirmDelete) {
       const { users } = this.state;
       users.splice(index, 1);
-
-      // Update LocalStorage and reset form
       localStorage.setItem('users', JSON.stringify(users));
-      this.setState({ users, name: '', gender: 'male', editingIndex: null });
+      this.setState({ users });
+      toast.success('User deleted successfully');
     }
   };
 
@@ -67,7 +60,7 @@ class UserManagement extends Component {
         <h2 className="text-center">User Management</h2>
         <form>
           <div className="mb-3">
-            <label htmlFor="name" className="form-label" required>
+            <label htmlFor="name" className="form-label">
               Name:
             </label>
             <input
@@ -90,7 +83,7 @@ class UserManagement extends Component {
               onChange={this.handleChange}
               required
             >
-              <option value="">--Select any one--</option>
+              <option value="">--Select Any one--</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
             </select>

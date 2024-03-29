@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
- 
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+
 class ColourPickerApp extends Component {
     constructor(props) {
         super(props);
@@ -22,15 +23,23 @@ class ColourPickerApp extends Component {
  
     render() {
         return (
-            <div> <center>
-                <h2> Color Picker App </h2>
-                <button onClick={() => this.saveColor('red')}>Red</button>
-                <button onClick={() => this.saveColor('green')}>Green</button>
-                <button onClick={() => this.saveColor('blue')}>Blue</button>
-                <button onClick={() => this.saveColor('White')}>Reset</button><br/>&nbsp;
-                <div id="component" style={{ width: '200px', height: '200px', backgroundColor: this.state.backgroundColor, marginBottom: '20px' }}></div>
-                
-                </center></div>
+            <div className="container"> {/* Added container class for Bootstrap */}
+                <div className="row justify-content-center"> {/* Added Bootstrap row and justify-content-center class */}
+                    <div className="col-md-6"> {/* Added Bootstrap column class */}
+                        <center>
+                            <h2>Color Picker App</h2>
+                            <div>
+                                <button className="btn btn-danger mr-2" onClick={() => this.saveColor('red')}>Red</button> {/* Added Bootstrap button class and margin */}
+                                <button className="btn btn-success mr-2" onClick={() => this.saveColor('green')}>Green</button> {/* Added Bootstrap button class and margin */}
+                                <button className="btn btn-primary mr-2" onClick={() => this.saveColor('blue')}>Blue</button> {/* Added Bootstrap button class and margin */}
+                                <button className="btn btn-light" onClick={() => this.saveColor('white')}>Reset</button> {/* Added Bootstrap button class */}
+                            </div>
+                            <br />
+                            <div id="component" style={{ width: '200px', height: '200px', backgroundColor: this.state.backgroundColor, marginBottom: '20px' }}></div>
+                        </center>
+                    </div>
+                </div>
+            </div>
         );
     }
 }

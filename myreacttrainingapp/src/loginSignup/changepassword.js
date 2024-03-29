@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import { Link,Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; // Import Toastify CSS
+import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
+import "bootstrap/dist/js/bootstrap.bundle.min"; // Import Bootstrap JS
 
 class ChangePassword extends Component {
   constructor(props) {
@@ -9,7 +13,6 @@ class ChangePassword extends Component {
       oldPassword: "",
       newPassword: "",
       confirmPassword: "",
-      isPasswordChanged: false,
       storedPassword: storedUserData.password || "", // Retrieve stored password
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -24,32 +27,25 @@ class ChangePassword extends Component {
   handleChangePassword() {
     const { oldPassword, newPassword, confirmPassword, storedPassword } = this.state;
     if(oldPassword === '' || newPassword === '' || confirmPassword === '') {
-        alert('Please enter all the fields');
+        toast.error('Please enter all the fields');
     }
     else if (oldPassword !== storedPassword) {
-      alert('Old password does not match');
+      toast.error('Old password does not match');
     } else if (newPassword !== confirmPassword) {
-      alert('New password and confirm password do not match');
+      toast.error('New password and confirm password do not match');
     } else {
       // Update the password in localStorage
-      // Assuming you have storedUserData in the local storage
       const storedUserData = JSON.parse(localStorage.getItem('userdata')) || {};
       storedUserData.password = newPassword;
       localStorage.setItem('userdata', JSON.stringify(storedUserData));
 
-      alert('Password changed successfully');
+      toast.success('Password changed successfully');
       // Redirect to the home page
       this.setState({ isPasswordChanged: true });
     }
   }
 
   render() {
-    const { isPasswordChanged } = this.state;
-
-    // Redirect to the new password page if email matches
-    if (isPasswordChanged) {
-      return <Navigate to="/loginSignup/homepage" />;
-    }
     return (
       <center>
         <h2>Change Password</h2>
@@ -74,7 +70,7 @@ class ChangePassword extends Component {
           value={this.state.confirmPassword}
           onChange={this.handleInputChange}
         /><br />
-        <input type='button' value="Change Password" onClick={this.handleChangePassword} />&nbsp;
+        <button className="btn btn-primary" onClick={this.handleChangePassword}>Change Password</button>&nbsp;
         <br />
         <Link to="/loginSignup/homepage">Back to Home</Link>
       </center>

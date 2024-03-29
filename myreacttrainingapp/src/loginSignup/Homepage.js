@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Logout from "./logout";
+import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 
 class Homepage extends Component {
   constructor(props) {
@@ -24,14 +25,16 @@ class Homepage extends Component {
     const { userName } = this.state;
 
     return (
-      <>
+      <div className="container mt-5">
         <center>
           <h2>Homepage</h2>
           {userName && <p>Hello, {userName}!</p>}
-          <Link to="/loginSignup/homepage/changepassword">Change Password</Link>
+          <Link to="/loginSignup/homepage/changepassword" className="btn btn-primary mr-2">
+            Change Password
+          </Link>
           <Logout />
         </center>
-      </>
+      </div>
     );
   }
 }
